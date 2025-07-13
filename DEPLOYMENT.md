@@ -1,4 +1,21 @@
-# GitHub Pages Deployment Guide for Observa
+# GitHub Pages ### Step 3: Build Process
+The workflow now uses the modern Next.js export system:
+```yaml
+- name: Build with Next.js
+  run: next build  # This automatically exports when output: 'export' is set
+```
+
+### Step 4: Next.js Configuration
+The `next.config.js` is configured for static export:
+```javascript
+{
+  output: 'export',        // Enables static export
+  trailingSlash: true,     // Ensures URLs work on static hosts
+  images: { unoptimized: true },  // Required for static export
+  assetPrefix: '/observa-shopify',  // GitHub Pages subdirectory
+  basePath: '/observa-shopify'      // GitHub Pages subdirectory
+}
+``` Observa
 
 ## Common Issues and Solutions
 
@@ -81,15 +98,14 @@ Once the action completes successfully:
 Test the static export locally before deploying:
 
 ```bash
-# Build and export
+# Build and export (automatically exports with output: 'export')
 npm run build
-npm run export
 
 # Serve the static files
 npx serve out
 
-# Or use the convenience script
-npm run test-deployment
+# Check if the build succeeded
+ls out/
 ```
 
 ## Manual Deployment (Alternative)
@@ -99,7 +115,7 @@ If GitHub Actions fails, you can deploy manually:
 1. **Build locally:**
    ```bash
    npm run build
-   npm run export
+   # The 'out' folder is automatically created
    ```
 
 2. **Push the `out` folder to `gh-pages` branch:**
