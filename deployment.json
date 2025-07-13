@@ -1,0 +1,9 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "scripts": {
+    "build-and-export": "next build && next export",
+    "serve-static": "npx serve out",
+    "test-deployment": "npm run build-and-export && npm run serve-static"
+  }
+}

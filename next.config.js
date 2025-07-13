@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+  distDir: 'out',
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    unoptimized: true,
   },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/observa-shopify' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/observa-shopify' : '',
 }
 
 module.exports = nextConfig

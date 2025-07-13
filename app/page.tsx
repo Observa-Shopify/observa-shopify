@@ -17,7 +17,7 @@ import { motion } from 'framer-motion'
 const navigation = [
   { name: 'Features', href: '#features' },
   { name: 'Pricing', href: '#pricing' },
-  { name: 'About', href: '#about' },
+  { name: 'About', href: '/about' },
   { name: 'Contact', href: '#contact' },
 ]
 
