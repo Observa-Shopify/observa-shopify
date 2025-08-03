@@ -25,6 +25,7 @@ import { motion } from 'framer-motion'
 
 import Image from 'next/image';
 import dashboard from '../assets/dashboard.png'
+import appLogo from '../assets/applogo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -163,12 +164,16 @@ export default function FeaturesPage() {
       {/* Header */}
       <header className="relative z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5 group">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                    <span className="text-white font-bold text-lg">O</span>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                    <Image
+                      src={appLogo}
+                      alt="Observa Logo"
+                      className="w-8 h-8 object-cover rounded-lg"
+                    />
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
                 </div>
@@ -194,9 +199,9 @@ export default function FeaturesPage() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors">
+            {/* <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors">
               Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+            </Link> */}
             <Link
               href="/pricing"
               className="relative group rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -215,8 +220,12 @@ export default function FeaturesPage() {
               <div className="flex items-center justify-between">
                 <Link href="/" className="-m-1.5 p-1.5">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">O</span>
+                    <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={appLogo}
+                        alt="Observa Logo"
+                        className="w-8 h-8 object-cover rounded-lg"
+                      />
                     </div>
                     <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Observa</span>
                   </div>
@@ -244,12 +253,12 @@ export default function FeaturesPage() {
                     ))}
                   </div>
                   <div className="py-6 space-y-2">
-                    <Link
+                    {/* <Link
                       href="/login"
                       className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-teal-50 transition-colors"
                     >
                       Log in
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/pricing"
                       className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 transition-all"
@@ -527,8 +536,12 @@ export default function FeaturesPage() {
             <div className="space-y-8">
               <Link href="/" className="flex items-center gap-3 group">
                 <div className="relative">
-                  <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                    <span className="text-white font-bold text-lg">O</span>
+                  <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                    <Image
+                      src={appLogo}
+                      alt="Observa Logo"
+                      className="w-8 h-8 object-cover rounded-lg"
+                    />
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
                 </div>

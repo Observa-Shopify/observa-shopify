@@ -13,6 +13,8 @@ import {
   SparklesIcon
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
+import Image from 'next/image';
+import appLogo from '../assets/applogo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -68,13 +70,20 @@ export default function AboutPage() {
       {/* Header */}
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">O</span>
+        <div className="flex lg:flex-1">
+            <Link href="/" className="-m-1.5 p-1.5 group">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
+                    <Image
+                      src={appLogo}
+                      alt="Observa Logo"
+                      className="w-8 h-8 object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="absolute -inset-1 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300" />
                 </div>
-                <span className="text-2xl font-bold text-gray-900">Observa</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Observa</span>
               </div>
             </Link>
           </div>
@@ -95,9 +104,9 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
+            {/* <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
               Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+            </Link> */}
             <Link
               href="/pricing"
               className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
@@ -144,12 +153,12 @@ export default function AboutPage() {
                     ))}
                   </div>
                   <div className="py-6 space-y-2">
-                    <Link
+                    {/* <Link
                       href="/login"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       Log in
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/pricing"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-blue-600 hover:bg-blue-500"

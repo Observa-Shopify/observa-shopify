@@ -13,6 +13,8 @@ import {
   ArrowTrendingDownIcon,
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
+import appLogo from '../assets/applogo.jpeg'
+
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
