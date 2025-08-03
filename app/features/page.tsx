@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import {
-  ChartBarIcon,
-  BellIcon,
-  ShieldCheckIcon,
+import { 
+  ChartBarIcon, 
+  BellIcon, 
+  ShieldCheckIcon, 
   SparklesIcon,
   XMarkIcon,
   Bars3Icon,
@@ -13,14 +13,18 @@ import {
   CheckIcon,
   PlayIcon,
   StarIcon,
+  EyeIcon,
+  ClockIcon,
+  DevicePhoneMobileIcon,
+  CogIcon,
   RocketLaunchIcon,
   CpuChipIcon,
   GlobeAltIcon
 } from '@heroicons/react/24/outline'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import Image from 'next/image';
+import { motion } from 'framer-motion'
 
-import dashboard from './assets/dashboard.png'
+import Image from 'next/image';
+import dashboard from '../assets/dashboard.png'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -34,21 +38,42 @@ const features = [
     name: 'Real-time Performance Monitoring',
     description: 'Track Core Web Vitals (LCP, FID, CLS) and other performance metrics in real-time across your Shopify store.',
     icon: ChartBarIcon,
-    gradient: 'from-indigo-500 to-purple-500',
+    gradient: 'from-teal-500 to-emerald-500',
+    details: [
+      'Monitor Core Web Vitals (LCP, FID, CLS)',
+      'Track page load times and performance scores',
+      'Real-time performance dashboards',
+      'Historical performance trends',
+      'Mobile and desktop performance tracking'
+    ],
     delay: 0.1
   },
   {
     name: 'Smart Conversion Alerts',
     description: 'Get instant notifications when conversion rates drop below your defined thresholds via email, WhatsApp, or Slack.',
     icon: BellIcon,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: 'from-amber-500 to-orange-500',
+    details: [
+      'Custom conversion rate thresholds',
+      'Instant multi-channel notifications',
+      'Smart alert filtering',
+      'Escalation rules',
+      'Alert history and analytics'
+    ],
     delay: 0.2
   },
   {
     name: 'Revenue Protection',
     description: 'Comprehensive analytics dashboard showing how performance impacts your store\'s revenue and user experience.',
     icon: SparklesIcon,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: 'from-rose-500 to-pink-500',
+    details: [
+      'Revenue impact analysis',
+      'Performance-to-revenue correlation',
+      'ROI tracking and reporting',
+      'Revenue loss prevention alerts',
+      'Performance optimization recommendations'
+    ],
     delay: 0.3
   },
   {
@@ -56,45 +81,74 @@ const features = [
     description: 'Stay informed through your preferred channels - email, WhatsApp, Slack, and more notification options.',
     icon: ShieldCheckIcon,
     gradient: 'from-indigo-500 to-purple-500',
+    details: [
+      'Email notifications',
+      'WhatsApp integration',
+      'Slack channel alerts',
+      'SMS notifications',
+      'Custom webhook support'
+    ],
     delay: 0.4
   },
-]
-
-const stats = [
-  { name: 'Stores Monitored', value: '2,500+', icon: GlobeAltIcon },
-  { name: 'Performance Issues Detected', value: '50K+', icon: CpuChipIcon },
-  { name: 'Revenue Protected', value: '$2.1M+', icon: ShieldCheckIcon },
-  { name: 'Average Response Time', value: '<30s', icon: RocketLaunchIcon },
-]
-
-const testimonials = [
   {
-    content: "Observa has transformed how we monitor our store's performance. The real-time alerts have saved us thousands in potential lost revenue.",
-    author: "Sarah Johnson",
-    role: "E-commerce Manager",
-    company: "Fashion Retailer",
-    rating: 5
+    name: 'Advanced Analytics Dashboard',
+    description: 'Get deep insights into your store\'s performance with comprehensive analytics and reporting tools.',
+    icon: EyeIcon,
+    gradient: 'from-cyan-500 to-blue-500',
+    details: [
+      'Real-time performance metrics',
+      'Custom dashboard widgets',
+      'Export reports and data',
+      'Performance benchmarking',
+      'Trend analysis and forecasting'
+    ],
+    delay: 0.5
   },
   {
-    content: "The setup was incredibly simple and the insights are invaluable. Our conversion rates improved by 35% within the first month.",
-    author: "Michael Chen",
-    role: "COO",
-    company: "Electronics Store",
-    rating: 5
-  },
-  {
-    content: "Finally, a performance monitoring tool that actually helps protect revenue. The multi-channel alerts are a game-changer.",
-    author: "Emma Rodriguez",
-    role: "Digital Marketing Director",
-    company: "Home & Garden",
-    rating: 5
+    name: '24/7 Monitoring',
+    description: 'Continuous monitoring ensures you never miss critical performance issues that could impact your revenue.',
+    icon: ClockIcon,
+    gradient: 'from-lime-500 to-green-500',
+    details: [
+      'Round-the-clock monitoring',
+      'Uptime tracking',
+      'Performance degradation detection',
+      'Automatic issue resolution',
+      'Scheduled maintenance alerts'
+    ],
+    delay: 0.6
   }
 ]
 
-export default function HomePage() {
+const benefits = [
+  {
+    title: 'Protect Your Revenue',
+    description: 'Prevent revenue loss by catching performance issues before they impact your customers.',
+    icon: ShieldCheckIcon,
+    delay: 0.1
+  },
+  {
+    title: 'Improve User Experience',
+    description: 'Ensure your customers have the best possible experience with fast, reliable performance.',
+    icon: StarIcon,
+    delay: 0.2
+  },
+  {
+    title: 'Save Time & Resources',
+    description: 'Automated monitoring and alerts save you hours of manual checking and troubleshooting.',
+    icon: ClockIcon,
+    delay: 0.3
+  },
+  {
+    title: 'Scale with Confidence',
+    description: 'Monitor performance as your store grows and handle increased traffic without issues.',
+    icon: ChartBarIcon,
+    delay: 0.4
+  }
+]
+
+export default function FeaturesPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 1000], [0, -200])
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-indigo-50 min-h-screen">
@@ -140,15 +194,15 @@ export default function HomePage() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            {/* <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors">
+            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors">
               Log in <span aria-hidden="true">&rarr;</span>
-            </Link> */}
+            </Link>
             <Link
               href="/pricing"
-              className="relative group rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="relative group rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10">Install Now</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-emerald-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </div>
         </nav>
@@ -182,7 +236,7 @@ export default function HomePage() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-indigo-50 transition-colors"
+                        className="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-teal-50 transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -190,15 +244,15 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="py-6 space-y-2">
-                    {/* <Link
+                    <Link
                       href="/login"
-                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-indigo-50 transition-colors"
+                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-teal-50 transition-colors"
                     >
                       Log in
-                    </Link> */}
+                    </Link>
                     <Link
                       href="/pricing"
-                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all"
+                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 transition-all"
                     >
                       Install Now
                     </Link>
@@ -211,40 +265,30 @@ export default function HomePage() {
       </header>
 
       {/* Hero section */}
-      <div className="relative isolate px-6 lg:px-8">
+      <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
-            <motion.div
-              className="inline-flex items-center rounded-full px-4 py-2 text-sm leading-6 text-indigo-700 ring-1 ring-indigo-600/20 mb-8 bg-indigo-50/50 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="font-semibold">🚀 Just launched v2.0</span>
-              <ArrowRightIcon className="ml-2 h-4 w-4" />
-            </motion.div>
-            <motion.h1
+            <motion.h1 
               className="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Complete Shopify{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Performance Monitoring
-              </span>{' '}
-              Suite
+              Complete Performance{' '}
+              <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                Monitoring Suite
+              </span>
             </motion.h1>
-            <motion.p
+            <motion.p 
               className="mt-8 text-xl leading-8 text-gray-600 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Observa helps Shopify merchants protect revenue and boost conversions by monitoring web vitals,
-              tracking performance metrics, and delivering instant alerts when issues arise.
+              Everything you need to monitor, protect, and optimize your Shopify store's performance. 
+              Get real-time insights and instant alerts to keep your revenue safe.
             </motion.p>
-            <motion.div
+            <motion.div 
               className="mt-12 flex items-center justify-center gap-x-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -252,17 +296,17 @@ export default function HomePage() {
             >
               <Link
                 href="/pricing"
-                className="relative group rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 text-base font-semibold text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="relative group rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-6 py-4 text-base font-semibold text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Install Now
+                  Get Started Free
                   <ArrowRightIcon className="h-5 w-5" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-emerald-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
-              <Link href="#demo" className="text-base font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors flex items-center gap-2 group">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <PlayIcon className="h-5 w-5 text-indigo-600" />
+              <Link href="#demo" className="text-base font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors flex items-center gap-2 group">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-teal-100 to-emerald-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <PlayIcon className="h-5 w-5 text-teal-600" />
                 </div>
                 Watch Demo
               </Link>
@@ -359,56 +403,22 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* Stats section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
-        <div className="mx-auto max-w-2xl lg:max-w-none">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Trusted by thousands of Shopify stores
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600">
-              Join the growing community of merchants who rely on Observa to protect their revenue
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.name}
-                className="relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative rounded-2xl bg-white/50 backdrop-blur-sm p-8 shadow-lg ring-1 ring-gray-200/50 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-100 to-purple-100 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="h-6 w-6 text-indigo-600" />
-                  </div>
-                  <dt className="text-sm font-semibold leading-6 text-gray-600 mb-2">{stat.name}</dt>
-                  <dd className="text-3xl font-bold tracking-tight text-gray-900">{stat.value}</dd>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Features section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
         <div className="mx-auto max-w-2xl lg:text-center mb-16">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Simple and Powerful</h2>
+          <h2 className="text-base font-semibold leading-7 text-teal-600">Powerful Features</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Complete performance monitoring for your Shopify store
+            Everything you need to protect your revenue
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Get comprehensive insights into your store's performance with our advanced monitoring tools and intelligent alerting system.
+            Our comprehensive suite of monitoring tools helps you identify and resolve performance issues before they impact your customers.
           </p>
         </div>
         <div className="mx-auto max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
           <div className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
             {features.map((feature, index) => (
-              <motion.div
-                key={feature.name}
+              <motion.div 
+                key={feature.name} 
                 className="relative group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -422,7 +432,15 @@ export default function HomePage() {
                     </div>
                     <h3 className="text-xl font-semibold leading-7 text-gray-900">{feature.name}</h3>
                   </div>
-                  <p className="text-base leading-7 text-gray-600">{feature.description}</p>
+                  <p className="text-base leading-7 text-gray-600 mb-6">{feature.description}</p>
+                  <ul className="space-y-3">
+                    {feature.details.map((detail, detailIndex) => (
+                      <li key={detailIndex} className="flex gap-x-3">
+                        <CheckIcon className="h-6 w-5 flex-none text-teal-600" aria-hidden="true" />
+                        <span className="text-sm leading-6 text-gray-600">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             ))}
@@ -430,42 +448,39 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Testimonials section */}
+      {/* Benefits section */}
       <div className="bg-gradient-to-br from-slate-50 to-gray-100 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-xl text-center mb-16">
-            <h2 className="text-lg font-semibold leading-8 tracking-tight text-teal-600">Testimonials</h2>
+          <div className="mx-auto max-w-2xl lg:text-center mb-16">
+            <h2 className="text-base font-semibold leading-7 text-teal-600">Why Choose Observa</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              See how businesses are growing with Observa
+              Transform your Shopify store's performance
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Join thousands of merchants who trust Observa to protect their revenue and improve customer experience.
             </p>
           </div>
-          <div className="mx-auto flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
+          <div className="mx-auto max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+              {benefits.map((benefit, index) => (
+                <motion.div 
+                  key={benefit.title} 
                   className="relative group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: benefit.delay }}
                   viewport={{ once: true }}
                 >
                   <div className="relative rounded-2xl bg-white/70 backdrop-blur-sm p-8 shadow-lg ring-1 ring-gray-200/50 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-900 mb-4 text-lg leading-relaxed">
-                      "{testimonial.content}"
-                    </blockquote>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">{testimonial.author.charAt(0)}</span>
+                    <div className="flex gap-x-6">
+                      <div className="flex-none">
+                        <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 p-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <benefit.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                        </div>
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                        <div className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</div>
+                        <h3 className="text-xl font-semibold leading-7 text-gray-900 mb-3">{benefit.title}</h3>
+                        <p className="text-base leading-7 text-gray-600">{benefit.description}</p>
                       </div>
                     </div>
                   </div>
@@ -477,24 +492,24 @@ export default function HomePage() {
       </div>
 
       {/* CTA section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-700/20 via-purple-700/20 to-pink-700/20" />
+      <div className="relative overflow-hidden bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-700/20 via-emerald-700/20 to-cyan-700/20" />
         <div className="relative px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Ready to protect your revenue?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-indigo-100">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-teal-100">
               Start monitoring your Shopify store's performance today. Get alerted before issues impact your sales.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/pricing"
-                className="rounded-xl bg-white px-6 py-4 text-base font-semibold text-indigo-600 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="rounded-xl bg-white px-6 py-4 text-base font-semibold text-teal-600 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
               >
                 Get Started Free
               </Link>
-              <Link href="/features" className="text-base font-semibold leading-6 text-white hover:text-indigo-100 transition-colors">
+              <Link href="/about" className="text-base font-semibold leading-6 text-white hover:text-teal-100 transition-colors">
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -520,7 +535,7 @@ export default function HomePage() {
                 <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Observa</span>
               </Link>
               <p className="text-sm leading-6 text-gray-600">
-                The most comprehensive performance monitoring solution for Shopify stores.
+                The most comprehensive performance monitoring solution for Shopify stores. 
                 Protect your revenue with intelligent alerts and real-time insights.
               </p>
             </div>
@@ -530,12 +545,12 @@ export default function HomePage() {
                   <h3 className="text-sm font-semibold leading-6 text-gray-900">Product</h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
-                      <Link href="/features" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">
+                      <Link href="/features" className="text-sm leading-6 text-gray-600 hover:text-teal-600 transition-colors">
                         Features
                       </Link>
                     </li>
                     <li>
-                      <Link href="/pricing" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">
+                      <Link href="/pricing" className="text-sm leading-6 text-gray-600 hover:text-teal-600 transition-colors">
                         Pricing
                       </Link>
                     </li>
@@ -615,4 +630,4 @@ export default function HomePage() {
       </footer>
     </div>
   )
-}
+} 

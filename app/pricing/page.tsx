@@ -1,26 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import {
-  ChartBarIcon,
-  BellIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
   XMarkIcon,
   Bars3Icon,
   ArrowRightIcon,
   CheckIcon,
-  PlayIcon,
-  StarIcon,
-  RocketLaunchIcon,
-  CpuChipIcon,
-  GlobeAltIcon
+  StarIcon
 } from '@heroicons/react/24/outline'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image';
+import dashboard from '../assets/dashboard.png'
 
-import dashboard from './assets/dashboard.png'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -29,72 +21,102 @@ const navigation = [
   { name: 'Privacy', href: '/privacy' },
 ]
 
-const features = [
+const pricingPlans = [
   {
-    name: 'Real-time Performance Monitoring',
-    description: 'Track Core Web Vitals (LCP, FID, CLS) and other performance metrics in real-time across your Shopify store.',
-    icon: ChartBarIcon,
-    gradient: 'from-indigo-500 to-purple-500',
-    delay: 0.1
+    name: 'Free Forever',
+    price: '$0',
+    description: 'Perfect for getting started with performance monitoring',
+    features: [
+      'Up to 10K page views/month',
+      'Core Web Vitals monitoring',
+      'Email alerts',
+      'Basic dashboard',
+      '24/7 monitoring',
+      'Real-time performance metrics',
+      'Mobile and desktop tracking',
+      'Basic analytics',
+      'Community support',
+      'Setup in 2 minutes'
+    ],
+    featured: false,
+    cta: 'Get Started Free',
+    popular: false
   },
   {
-    name: 'Smart Conversion Alerts',
-    description: 'Get instant notifications when conversion rates drop below your defined thresholds via email, WhatsApp, or Slack.',
-    icon: BellIcon,
-    gradient: 'from-pink-500 to-rose-500',
-    delay: 0.2
+    name: 'Professional',
+    price: '$29',
+    description: 'Ideal for growing stores with serious performance needs',
+    features: [
+      'Up to 100K page views/month',
+      'Advanced performance metrics',
+      'Email + WhatsApp + Slack alerts',
+      'Advanced analytics dashboard',
+      'Custom alert thresholds',
+      'A/B testing insights',
+      'Revenue impact analysis',
+      'Custom webhook support',
+      'Priority email support',
+      'Export reports and data',
+      'Performance benchmarking',
+      'Trend analysis'
+    ],
+    featured: true,
+    cta: 'Start Free Trial',
+    popular: true
   },
   {
-    name: 'Revenue Protection',
-    description: 'Comprehensive analytics dashboard showing how performance impacts your store\'s revenue and user experience.',
-    icon: SparklesIcon,
-    gradient: 'from-cyan-500 to-blue-500',
-    delay: 0.3
-  },
-  {
-    name: 'Multi-channel Notifications',
-    description: 'Stay informed through your preferred channels - email, WhatsApp, Slack, and more notification options.',
-    icon: ShieldCheckIcon,
-    gradient: 'from-indigo-500 to-purple-500',
-    delay: 0.4
+    name: 'Enterprise',
+    price: '$99',
+    description: 'For large stores requiring comprehensive monitoring',
+    features: [
+      'Unlimited page views',
+      'Full performance suite',
+      'All notification channels',
+      'Custom integrations',
+      'Dedicated support',
+      'Advanced reporting',
+      'API access',
+      'White-label options',
+      'Custom dashboard branding',
+      'SLA guarantees',
+      'Onboarding assistance',
+      'Quarterly business reviews'
+    ],
+    featured: false,
+    cta: 'Contact Sales',
+    popular: false
   },
 ]
 
-const stats = [
-  { name: 'Stores Monitored', value: '2,500+', icon: GlobeAltIcon },
-  { name: 'Performance Issues Detected', value: '50K+', icon: CpuChipIcon },
-  { name: 'Revenue Protected', value: '$2.1M+', icon: ShieldCheckIcon },
-  { name: 'Average Response Time', value: '<30s', icon: RocketLaunchIcon },
-]
-
-const testimonials = [
+const faqs = [
   {
-    content: "Observa has transformed how we monitor our store's performance. The real-time alerts have saved us thousands in potential lost revenue.",
-    author: "Sarah Johnson",
-    role: "E-commerce Manager",
-    company: "Fashion Retailer",
-    rating: 5
+    question: "Is it really free forever?",
+    answer: "Yes! Our Free plan is completely free with no hidden costs or transaction fees. We believe in helping merchants succeed."
   },
   {
-    content: "The setup was incredibly simple and the insights are invaluable. Our conversion rates improved by 35% within the first month.",
-    author: "Michael Chen",
-    role: "COO",
-    company: "Electronics Store",
-    rating: 5
+    question: "How quickly can I set it up?",
+    answer: "Setup takes less than 2 minutes. Simply install from the Shopify App Store and start monitoring immediately."
   },
   {
-    content: "Finally, a performance monitoring tool that actually helps protect revenue. The multi-channel alerts are a game-changer.",
-    author: "Emma Rodriguez",
-    role: "Digital Marketing Director",
-    company: "Home & Garden",
-    rating: 5
+    question: "Will it affect my store performance?",
+    answer: "No, Observa is optimized for performance and won't slow down your store or checkout process."
+  },
+  {
+    question: "Can I customize the alerts?",
+    answer: "Absolutely! Create unlimited custom rules based on performance thresholds, conversion rates, and more."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards, PayPal, and Shopify Payments. All payments are processed securely."
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer: "Yes, you can cancel your subscription at any time. No long-term contracts or cancellation fees."
   }
 ]
 
-export default function HomePage() {
+export default function PricingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 1000], [0, -200])
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-indigo-50 min-h-screen">
@@ -133,22 +155,22 @@ export default function HomePage() {
           </div>
           <div className="hidden lg:flex lg:gap-x-8">
             {navigation.map((item) => (
-              <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors relative group">
+              <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors relative group">
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-600 to-emerald-600 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-            {/* <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors">
+            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600 transition-colors">
               Log in <span aria-hidden="true">&rarr;</span>
-            </Link> */}
+            </Link>
             <Link
               href="/pricing"
-              className="relative group rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="relative group rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <span className="relative z-10">Install Now</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-emerald-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
           </div>
         </nav>
@@ -182,7 +204,7 @@ export default function HomePage() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-indigo-50 transition-colors"
+                        className="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-teal-50 transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -190,15 +212,15 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="py-6 space-y-2">
-                    {/* <Link
+                    <Link
                       href="/login"
-                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-indigo-50 transition-colors"
+                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-teal-50 transition-colors"
                     >
                       Log in
-                    </Link> */}
+                    </Link>
                     <Link
                       href="/pricing"
-                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all"
+                      className="-mx-3 block rounded-xl px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 transition-all"
                     >
                       Install Now
                     </Link>
@@ -211,29 +233,19 @@ export default function HomePage() {
       </header>
 
       {/* Hero section */}
-      <div className="relative isolate px-6 lg:px-8">
+      <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
-            <motion.div
-              className="inline-flex items-center rounded-full px-4 py-2 text-sm leading-6 text-indigo-700 ring-1 ring-indigo-600/20 mb-8 bg-indigo-50/50 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="font-semibold">🚀 Just launched v2.0</span>
-              <ArrowRightIcon className="ml-2 h-4 w-4" />
-            </motion.div>
             <motion.h1
               className="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Complete Shopify{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Performance Monitoring
-              </span>{' '}
-              Suite
+              Simple, Transparent{' '}
+              <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                Pricing
+              </span>
             </motion.h1>
             <motion.p
               className="mt-8 text-xl leading-8 text-gray-600 max-w-3xl mx-auto"
@@ -241,32 +253,9 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Observa helps Shopify merchants protect revenue and boost conversions by monitoring web vitals,
-              tracking performance metrics, and delivering instant alerts when issues arise.
+              Start free and scale with your business. No hidden fees, no surprises.
+              Choose the plan that fits your needs and grow with confidence.
             </motion.p>
-            <motion.div
-              className="mt-12 flex items-center justify-center gap-x-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Link
-                href="/pricing"
-                className="relative group rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 text-base font-semibold text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Install Now
-                  <ArrowRightIcon className="h-5 w-5" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-              <Link href="#demo" className="text-base font-semibold leading-6 text-gray-700 hover:text-indigo-600 transition-colors flex items-center gap-2 group">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <PlayIcon className="h-5 w-5 text-indigo-600" />
-                </div>
-                Watch Demo
-              </Link>
-            </motion.div>
           </div>
         </div>
       </div>
@@ -359,10 +348,75 @@ export default function HomePage() {
         </motion.div>
       </div>
 
+      {/* Pricing section */}
+      <div className="bg-gradient-to-br from-slate-50 to-gray-100 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-base font-semibold leading-7 text-teal-600">Pricing</h2>
+            <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              Choose the right plan for your store
+            </p>
+          </div>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
+            Start with our free plan. No credit card required. Cancel anytime.
+          </p>
+          <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12">
+            {pricingPlans.map((plan, index) => (
+              <motion.div
+                key={plan.name}
+                className={`rounded-3xl p-8 xl:p-10 ${plan.featured
+                    ? 'ring-2 ring-teal-600 bg-white shadow-xl'
+                    : 'ring-1 ring-gray-200 bg-white'
+                  } relative`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="inline-flex items-center rounded-full bg-teal-600 px-3 py-1 text-xs font-semibold text-white">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between gap-x-4">
+                  <h3 className="text-lg font-semibold leading-8 text-gray-900">{plan.name}</h3>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-gray-600">{plan.description}</p>
+                <p className="mt-6 flex items-baseline gap-x-1">
+                  <span className="text-4xl font-bold tracking-tight text-gray-900">{plan.price}</span>
+                  {plan.price !== '$0' && (
+                    <span className="text-sm font-semibold leading-6 text-gray-600">/month</span>
+                  )}
+                </p>
+                <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-x-3">
+                      <CheckIcon className="h-6 w-5 flex-none text-teal-600" aria-hidden="true" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={plan.name === 'Enterprise' ? '/contact' : '/signup'}
+                  className={`mt-8 block rounded-xl px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all hover:scale-105 ${plan.featured
+                      ? 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-xl hover:shadow-2xl focus-visible:outline-teal-600'
+                      : 'text-teal-600 ring-1 ring-inset ring-teal-200 hover:ring-teal-300'
+                    }`}
+                >
+                  {plan.cta}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Stats section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-24">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
         <div className="mx-auto max-w-2xl lg:max-w-none">
-          <div className="text-center mb-16">
+          <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Trusted by thousands of Shopify stores
             </h2>
@@ -370,131 +424,66 @@ export default function HomePage() {
               Join the growing community of merchants who rely on Observa to protect their revenue
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.name}
-                className="relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative rounded-2xl bg-white/50 backdrop-blur-sm p-8 shadow-lg ring-1 ring-gray-200/50 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-100 to-purple-100 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="h-6 w-6 text-indigo-600" />
-                  </div>
-                  <dt className="text-sm font-semibold leading-6 text-gray-600 mb-2">{stat.name}</dt>
-                  <dd className="text-3xl font-bold tracking-tight text-gray-900">{stat.value}</dd>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-3">
+            <div className="flex flex-col bg-gray-400/5 p-8">
+              <dt className="text-sm font-semibold leading-6 text-gray-600">Stores Protected</dt>
+              <dd className="order-first text-3xl font-bold tracking-tight text-gray-900">2,500+</dd>
+            </div>
+            <div className="flex flex-col bg-gray-400/5 p-8">
+              <dt className="text-sm font-semibold leading-6 text-gray-600">Revenue Protected</dt>
+              <dd className="order-first text-3xl font-bold tracking-tight text-gray-900">$2.1M+</dd>
+            </div>
+            <div className="flex flex-col bg-gray-400/5 p-8">
+              <dt className="text-sm font-semibold leading-6 text-gray-600">Average Response Time</dt>
+              <dd className="order-first text-3xl font-bold tracking-tight text-gray-900">&lt;30s</dd>
+            </div>
+          </dl>
         </div>
       </div>
 
-      {/* Features section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl lg:text-center mb-16">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Simple and Powerful</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Complete performance monitoring for your Shopify store
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Get comprehensive insights into your store's performance with our advanced monitoring tools and intelligent alerting system.
-          </p>
-        </div>
-        <div className="mx-auto max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <div className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.name}
-                className="relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: feature.delay }}
-                viewport={{ once: true }}
-              >
-                <div className="relative rounded-2xl bg-white/50 backdrop-blur-sm p-8 shadow-lg ring-1 ring-gray-200/50 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="flex items-center gap-x-4 mb-6">
-                    <div className={`h-12 w-12 rounded-xl bg-gradient-to-r ${feature.gradient} p-3 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                    </div>
-                    <h3 className="text-xl font-semibold leading-7 text-gray-900">{feature.name}</h3>
-                  </div>
-                  <p className="text-base leading-7 text-gray-600">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonials section */}
+      {/* FAQ section */}
       <div className="bg-gradient-to-br from-slate-50 to-gray-100 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-xl text-center mb-16">
-            <h2 className="text-lg font-semibold leading-8 tracking-tight text-teal-600">Testimonials</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              See how businesses are growing with Observa
-            </p>
-          </div>
-          <div className="mx-auto flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
+          <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
+            <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+            <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">
+              {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="relative group"
+                  className="pt-6"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="relative rounded-2xl bg-white/70 backdrop-blur-sm p-8 shadow-lg ring-1 ring-gray-200/50 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <StarIcon key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-900 mb-4 text-lg leading-relaxed">
-                      "{testimonial.content}"
-                    </blockquote>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">{testimonial.author.charAt(0)}</span>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                        <div className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</div>
-                      </div>
-                    </div>
-                  </div>
+                  <dt className="text-lg font-semibold leading-7 text-gray-900">{faq.question}</dt>
+                  <dd className="mt-2 text-base leading-7 text-gray-600">{faq.answer}</dd>
                 </motion.div>
               ))}
-            </div>
+            </dl>
           </div>
         </div>
       </div>
 
       {/* CTA section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-700/20 via-purple-700/20 to-pink-700/20" />
+      <div className="relative overflow-hidden bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-700/20 via-emerald-700/20 to-cyan-700/20" />
         <div className="relative px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Ready to protect your revenue?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-indigo-100">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-teal-100">
               Start monitoring your Shopify store's performance today. Get alerted before issues impact your sales.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                href="/pricing"
-                className="rounded-xl bg-white px-6 py-4 text-base font-semibold text-indigo-600 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                href="/signup"
+                className="rounded-xl bg-white px-6 py-4 text-base font-semibold text-teal-600 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
               >
                 Get Started Free
               </Link>
-              <Link href="/features" className="text-base font-semibold leading-6 text-white hover:text-indigo-100 transition-colors">
+              <Link href="/features" className="text-base font-semibold leading-6 text-white hover:text-teal-100 transition-colors">
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -530,12 +519,12 @@ export default function HomePage() {
                   <h3 className="text-sm font-semibold leading-6 text-gray-900">Product</h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
-                      <Link href="/features" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">
+                      <Link href="/features" className="text-sm leading-6 text-gray-600 hover:text-teal-600 transition-colors">
                         Features
                       </Link>
                     </li>
                     <li>
-                      <Link href="/pricing" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">
+                      <Link href="/pricing" className="text-sm leading-6 text-gray-600 hover:text-teal-600 transition-colors">
                         Pricing
                       </Link>
                     </li>
@@ -615,4 +604,4 @@ export default function HomePage() {
       </footer>
     </div>
   )
-}
+} 
