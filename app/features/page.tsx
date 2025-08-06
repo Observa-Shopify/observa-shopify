@@ -24,8 +24,8 @@ import {
 import { motion } from 'framer-motion'
 
 import Image from 'next/image';
-import dashboard from '../assets/dashboard.png'
-import appLogo from '../assets/logo.jpeg'
+import dashboard from '/assets/dashboard.png'
+import appLogo from '/assets/logo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
