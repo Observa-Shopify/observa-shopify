@@ -13,7 +13,7 @@ import {
   ArrowTrendingDownIcon,
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
-import appLogo from '../assets/logo.jpeg'
+import appLogo from '..logo.jpeg'
 
 
 const navigation = [
