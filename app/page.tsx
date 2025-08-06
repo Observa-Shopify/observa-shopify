@@ -299,7 +299,7 @@ export default function HomePage() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <div className="w-3 h-3 rounded-full bg-green-500" />
-                    <div className="ml-4 text-sm text-gray-500">observa.app/dashboard</div>
+                    <div className="ml-4 text-sm text-gray-500">useobserva.app/dashboard</div>
                   </div>
                 </div>
                 <div className="p-8">

@@ -148,6 +148,6 @@ This project is proprietary software for Observa.
 ## Support
 
 For support and questions:
-- Email: support@observa.app
-- Documentation: [docs.observa.app](https://docs.observa.app)
-- Status Page: [status.observa.app](https://status.observa.app)
+- Email: support@useobserva.app
+- Documentation: [docs.useobserva.app](https://docs.useobserva.app)
+- Status Page: [status.useobserva.app](https://status.useobserva.app)

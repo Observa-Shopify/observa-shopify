@@ -96,17 +96,17 @@ const privacySections = [
 const contactInfo = [
   {
     title: 'Email',
-    value: 'privacy@observa.app',
+    value: 'privacy@useobserva.app',
     description: 'For privacy-related inquiries'
   },
   {
     title: 'Support',
-    value: 'support@observa.app',
+    value: 'support@useobserva.app',
     description: 'For technical support and account issues'
   },
   {
     title: 'Legal',
-    value: 'legal@observa.app',
+    value: 'legal@useobserva.app',
     description: 'For legal and compliance matters'
   }
 ]
