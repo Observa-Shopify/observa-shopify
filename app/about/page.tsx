@@ -14,7 +14,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import Image from 'next/image';
-import appLogo from '..logo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -76,8 +75,10 @@ export default function AboutPage() {
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
                     <Image
-                      src={appLogo}
+                      src="/logo.jpeg"
                       alt="Observa Logo"
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded-lg"
                     />
                   </div>

@@ -12,7 +12,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import Image from 'next/image';
-import appLogo from '..logo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -134,8 +133,10 @@ export default function PrivacyPage() {
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
                     <Image
-                      src={appLogo}
+                      src="/logo.jpeg"
                       alt="Observa Logo"
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded-lg"
                     />
                   </div>
@@ -184,13 +185,15 @@ export default function PrivacyPage() {
               <div className="flex items-center justify-between">
                 <Link href="/" className="-m-1.5 p-1.5">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center overflow-hidden">
-                      <Image
-                        src={appLogo}
-                        alt="Observa Logo"
-                        className="w-8 h-8 object-cover rounded-lg"
-                      />
-                    </div>
+                                      <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/logo.jpeg"
+                      alt="Observa Logo"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-cover rounded-lg"
+                    />
+                  </div>
                     <span className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Observa</span>
                   </div>
                 </Link>
@@ -395,8 +398,10 @@ export default function PrivacyPage() {
                 <div className="relative">
                   <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
                     <Image
-                      src={appLogo}
+                      src="/logo.jpeg"
                       alt="Observa Logo"
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded-lg"
                     />
                   </div>

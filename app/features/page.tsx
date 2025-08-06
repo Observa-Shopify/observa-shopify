@@ -24,8 +24,7 @@ import {
 import { motion } from 'framer-motion'
 
 import Image from 'next/image';
-import dashboard from 'dashboard.png'
-import appLogo from 'logo.jpeg'
+
 
 const navigation = [
   { name: 'Features', href: '/features' },
@@ -170,8 +169,10 @@ export default function FeaturesPage() {
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
                     <Image
-                      src={appLogo}
+                      src="/assets/logo.jpeg"
                       alt="Observa Logo"
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded-lg"
                     />
                   </div>
@@ -222,7 +223,7 @@ export default function FeaturesPage() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center overflow-hidden">
                       <Image
-                        src={appLogo}
+                        src="/assets/logo.jpeg"
                         alt="Observa Logo"
                         className="w-8 h-8 object-cover rounded-lg"
                       />
@@ -363,11 +364,13 @@ export default function FeaturesPage() {
 
                     {/* TO ADD YOUR ACTUAL IMAGE, UNCOMMENT THIS AND REPLACE THE PATH: */}
 
-                    <Image
-                      src={dashboard}
-                      alt="Observa Dashboard Screenshot"
-                      className="w-full h-auto rounded-xl shadow-lg"
-                    />
+                                    <Image
+                  src="/assets/dashboard.png"
+                  alt="Observa Dashboard Screenshot"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
 
                   </div>
 
@@ -538,8 +541,10 @@ export default function FeaturesPage() {
                 <div className="relative">
                   <div className="w-10 h-10 bg-gradient-to-br from-teal-600 via-emerald-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 overflow-hidden">
                     <Image
-                      src={appLogo}
+                      src="/assets/logo.jpeg"
                       alt="Observa Logo"
+                      width={32}
+                      height={32}
                       className="w-8 h-8 object-cover rounded-lg"
                     />
                   </div>
