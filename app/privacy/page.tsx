@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import Image from 'next/image';
-import appLogo from '../assets/applogo.jpeg'
+import appLogo from '../assets/logo.jpeg'
 
 const navigation = [
   { name: 'Features', href: '/features' },
